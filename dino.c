@@ -30,7 +30,7 @@ int treeX = TREE_X;
 int dinoX = DINO_X;
 int dinoY = DINO_Y;
 
-int key = 0; //키보드 입력 받기
+int key = 0; //키보드 입력
 
 int main()
 {
@@ -95,13 +95,13 @@ int game(int tic) { //게임화면 메인 요소
 	return tic;
 }
 
-int crashing() { //충돌 판정	//난이도 '하'
+int crashing() { //충돌 판정
 	// (가로1 && 가로2) && 세로
-	// 가로1: 나무가 가로 11칸보다 뒤에 있음
-	// 가로2: 나무가 가로 15칸보다 앞에 있음
-	// 가로1 && 가로2: 나무가 가로 11칸과 15칸 사이에 있음
+	// 가로1: 나무가 가로 9칸보다 뒤에 있음
+	// 가로2: 나무가 가로 16칸보다 앞에 있음
+	// 가로1 && 가로2: 나무가 공룡 뒷발 (가로 9칸)과 앞발(가로 16칸) 사이에 있음
 	// 세로: 공룡 발 3칸이 나무 5칸 보다 높이가 같거나 낮을 때
-	if ((dinoX + 2 <= treeX + 2 && dinoX + 11 >= treeX + 2) && dinoY + 12 >= TREE_Y + 2)
+	if ((dinoX + 4 <= treeX + 2 && dinoX + 11 >= treeX + 2) && dinoY + 12 >= TREE_Y + 2)
 		return -1;
 	else
 		return 0;
@@ -112,16 +112,16 @@ void draw_dino(int tic) { //공룡 그리기
 	int toc = tic % 8;
 
 	//몸통
-	gotoxy(dinoX, dinoY);			printf("         @@@@@@@@\n");
-	gotoxy(dinoX, dinoY + 1);		printf("        @@@@@@@@@@@\n");
-	gotoxy(dinoX, dinoY + 2);		printf("        @@@ @@@@@@@\n");
-	gotoxy(dinoX, dinoY + 3);		printf("        @@@@@@@@@@@\n");
-	gotoxy(dinoX, dinoY + 4);		printf("        @@@@@@\n");
-	gotoxy(dinoX, dinoY + 5);		printf("*      @@@@@@@@@@\n");
-	gotoxy(dinoX, dinoY + 6);		printf("@     @@@@@@\n");
-	gotoxy(dinoX, dinoY + 7);		printf("@@  @@@@@@@@@@@@\n");
-	gotoxy(dinoX, dinoY + 8);		printf("@@@@@@@@@@@@   @\n");
-	gotoxy(dinoX, dinoY + 9);		printf("@@@@@@@@@@@@\n");
+	gotoxy(dinoX, dinoY);		printf("         @@@@@@@@\n");
+	gotoxy(dinoX, dinoY + 1);	printf("        @@@@@@@@@@@\n");
+	gotoxy(dinoX, dinoY + 2);	printf("        @@@ @@@@@@@\n");
+	gotoxy(dinoX, dinoY + 3);	printf("        @@@@@@@@@@@\n");
+	gotoxy(dinoX, dinoY + 4);	printf("        @@@@@@\n");
+	gotoxy(dinoX, dinoY + 5);	printf("*      @@@@@@@@@@\n");
+	gotoxy(dinoX, dinoY + 6);	printf("@     @@@@@@\n");
+	gotoxy(dinoX, dinoY + 7);	printf("@@  @@@@@@@@@@@@\n");
+	gotoxy(dinoX, dinoY + 8);	printf("@@@@@@@@@@@@   @\n");
+	gotoxy(dinoX, dinoY + 9);	printf("@@@@@@@@@@@@\n");
 	gotoxy(dinoX+1, dinoY + 10);	 printf("@@@@@@@@@@\n");
 	gotoxy(dinoX+2, dinoY + 11);	  printf("@@@@@@@@\n");
 	gotoxy(dinoX+3, dinoY + 12);	   printf("@@@@@@\n");
@@ -162,15 +162,15 @@ void earase_dino() { //공룡 지우기
 
 
 void draw_tree() { //나무 그리기
-	gotoxy(treeX + 2, TREE_Y);			printf("##\n");
-	gotoxy(treeX, TREE_Y + 1);		  printf("# ## #\n");
-	gotoxy(treeX, TREE_Y + 2);		  printf("######\n");
-	gotoxy(treeX + 2, TREE_Y + 3);		printf("##\n");
-	gotoxy(treeX + 2, TREE_Y + 4);		printf("##");
+	gotoxy(treeX + 2, TREE_Y);		  printf("##\n");
+	gotoxy(treeX, TREE_Y + 1);		printf("# ## #\n");
+	gotoxy(treeX, TREE_Y + 2);		printf("######\n");
+	gotoxy(treeX + 2, TREE_Y + 3);		  printf("##\n");
+	gotoxy(treeX + 2, TREE_Y + 4);		  printf("##");
 }
 
 void erase_tree() { //나무 지우기
-	gotoxy(treeX + 2, TREE_Y);		  printf("   \n");
+	gotoxy(treeX + 2, TREE_Y);	  printf("   \n");
 	gotoxy(treeX + 0, TREE_Y + 1);	printf("       \n");
 	gotoxy(treeX + 0, TREE_Y + 2);	printf("       \n");
 	gotoxy(treeX + 2, TREE_Y + 3);	  printf("   \n");
